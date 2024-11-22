@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MVGenMaster: Scaling Multi-View Generation from Any Image via 3D Priors Enhanced Diffusion Model.">
+  <meta name="keywords" content="Image Inpainting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MVGenMaster: Scaling Multi-View Generation from Any Image via 3D Priors Enhanced Diffusion Model</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+<!--  <link rel="icon" href="./static/images/favicon.svg">-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">MVGenMaster: Scaling Multi-View Generation from Any Image via 3D Priors Enhanced Diffusion Model</h1>
+          <h3 class="title is-3 publication-title">PrePrint</h3>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ewrfcas.github.io/">Chenjie Cao</a><sup>1,2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=b1Q-k20AAAAJ">Chaohui Yu</a><sup>2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=zh-CN&user=HV2ZVVoAAAAJ">Shang Liu</a><sup>2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=WCRGTHsAAAAJ">Fan Wang</a><sup>2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://istbi.fudan.edu.cn/lnen/info/1157/2875.htm ">Xiangyang Xue</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://yanweifu.github.io/">Yanwei Fu</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Fudan University, <sup>2</sup>Alibaba DAMO Academy, <sup>3</sup>Hupan Lab</span>
+          </div>
+
+<!--          <div class="is-size-6 publication-authors">-->
+<!--            <span class="author-block">* equal contributions</span>-->
+<!--          </div>-->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/ewrfcas/MVGenMaster"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code and Model</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <center>
+      <img src="./static/images/teaser.jpg" width="1000px"/>
+      </center>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce MVGenMaster, a multi-view diffusion model enhanced with 3D priors to address versatile Novel View Synthesis (NVS) tasks. MVGenMaster leverages 3D priors that are warped using metric depth and camera poses, significantly enhancing both generalization and 3D consistency in NVS.
+            Our model features a simple yet effective pipeline that can generate up to 100 novel views conditioned on arbitrary reference views and camera poses with a single forward process.
+            Additionally, we have developed a comprehensive large-scale multi-view image dataset comprising up to 1.2 million scenes, equipped with well-aligned metric depth.
+            Moreover, we present several training and model modifications to strengthen the model with scaled-up datasets.
+            Extensive evaluations across in- and out-of-domain benchmarks demonstrate the effectiveness of our proposed method and data formulation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Overview</h2>
+          <br/>
+          <div class="columns is-vcentered interpolation-panel">
+            <img src="./static/images/pipeline.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+          </div>
+        <br>
+        <b>Overall pipeline of MVGenMaster.</b>
+        Inputs can be categorized into reference views (reference images and related camera poses) and target views (camera poses only).
+        For training, we extract monocular depths from reference views and then align them with SfM to warp CCM and RGB pixels as 3D priors for target views.
+        For inference, we utilize Depth-Pro (single-view) or Dust3R (multi-view) to obtain metric depth.
+        </div>
+        <br/>
+      </div>
+    </div>
+    <!--/ Animation. -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">MVMDepth Dataset with 3D Priros</h2>
+          <br/>
+          <div class="columns is-vcentered interpolation-panel">
+            <img src="./static/images/datasets.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+          </div>
+          <div class="columns is-vcentered interpolation-panel">
+            <img src="./static/images/dataset_project_page.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+          </div>
+        </div>
+        <br/>
+      </div>
+    </div>
+    <!--/ Animation. -->
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Animation. -->
+        <!-- Paper video. -->
+    <div class="columns is-centered">
+      <div class="column">
+          <h2 class="title is-3">Results of Novel View Synthesis</h2>
+          <h2 class="title is-4">1 view to 25 views, CAT3D* is re-implemented by our settings</h2>
+          <h3 class="title is-5">DL3DV validation</h3>
+          <div class="columns is-vcentered interpolation-panel">
+            <img src="./static/images/nvs_results_gif_dl3dv.gif"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+          </div>
+          <h3 class="title is-5">CO3Dv2 and MVImgNet validation</h3>
+          <div class="columns is-vcentered interpolation-panel">
+            <img src="./static/images/nvs_results_gif_obj.gif"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+          </div>
+          <h3 class="title is-5">Zero-shot validation (DTU, MipNeRF360, Tanks-and-Temples)</h3>
+          <div class="columns is-vcentered interpolation-panel">
+            <img src="./static/images/nvs_results_gif_zero.gif"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+          </div>
+      </div>
+  </div>
+  </div>
+  <!--/ Animation. -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">More NVS Applications</h2>
+        <h2 class="title is-4">Text-to-image to multi-view</h2>
+        <div class="columns is-vcentered interpolation-panel">
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_00.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_01.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_02.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_03.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_04.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_05.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_06.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_07.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_08.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_09.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_10.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_11.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_12.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_13.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_14.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <video autoplay loop muted controls width="200">
+            <source src="static/videos/t2i/output_15.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="266.6">
+            <source src="static/videos/t2i/output_16.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="266.6">
+            <source src="static/videos/t2i/output_17.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="266.6">
+            <source src="static/videos/t2i/output_18.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h2 class="title is-4">Interpolation</h2>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp1-0.jpg" width="330"/>
+          <img src="./static/images/interp/interp1-1.jpg" width="330"/>
+          <video autoplay loop muted controls width="333">
+            <source src="static/videos/interp/final_video_1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp0-0.jpg" width="330"/>
+          <img src="./static/images/interp/interp0-1.jpg" width="330"/>
+          <video autoplay loop muted controls width="333">
+            <source src="static/videos/interp/final_video_0.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp2-0.jpg" width="330"/>
+          <img src="./static/images/interp/interp2-1.jpg" width="330"/>
+          <video autoplay loop muted controls width="333">
+            <source src="static/videos/interp/final_video_2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp3-0.jpg" width="330"/>
+          <img src="./static/images/interp/interp3-1.jpg" width="330"/>
+          <video autoplay loop muted controls width="333">
+            <source src="static/videos/interp/final_video_3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp5-0.jpg" width="330"/>
+          <img src="./static/images/interp/interp5-1.jpg" width="330"/>
+          <video autoplay loop muted controls width="333">
+            <source src="static/videos/interp/final_video_5.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp6-0.png" width="248"/>
+          <img src="./static/images/interp/interp6-1.png" width="248"/>
+          <img src="./static/images/interp/interp6-2.png" width="248"/>
+          <video autoplay loop muted controls width="248">
+            <source src="static/videos/interp/final_video_6.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp7-0.png" width="248"/>
+          <img src="./static/images/interp/interp7-1.png" width="248"/>
+          <img src="./static/images/interp/interp7-2.png" width="248"/>
+          <video autoplay loop muted controls width="248">
+            <source src="static/videos/interp/final_video_7.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/interp/interp8-0.png" width="248"/>
+          <img src="./static/images/interp/interp8-1.png" width="248"/>
+          <img src="./static/images/interp/interp8-2.png" width="248"/>
+          <video autoplay loop muted controls width="248">
+            <source src="static/videos/interp/final_video_8.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-4">Results of 3DGS Reconstruction (3-view)</h2>
+        <div class="columns is-vcentered interpolation-panel">
+          <video autoplay loop muted controls width="350">
+            <source src="static/videos/gs/garden.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="350">
+            <source src="static/videos/gs/kitchen.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="350">
+            <source src="static/videos/gs/bonsai.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <video autoplay loop muted controls width="350">
+            <source src="static/videos/gs/tnt1.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="350">
+            <source src="static/videos/gs/tnt2.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted controls width="350">
+            <source src="static/videos/gs/tnt3.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
