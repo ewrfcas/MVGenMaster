@@ -2,7 +2,7 @@
 
 [Preprint] MVGenMaster: Scaling Multi-View Generation from Any Image via 3D Priors Enhanced Diffusion Model
 
-[[arXiv]]() [[Project Page]](https://ewrfcas.github.io/MVGenMaster/)
+[[arXiv]](https://arxiv.org/abs/2411.16157) [[Project Page]](https://ewrfcas.github.io/MVGenMaster/)
 
 ### Abstract
 
