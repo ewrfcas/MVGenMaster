@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_jianchong/caochenjie.ccj/aerial_data/ACID/acid/output"
+dataset_root: "/path/to/data/acid"
 
 train_list: "./data/acid/train_list.txt"
 val_list: "./data/acid/val_list.txt"

@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_pai_huakun/mnt_det_bak/datasets/ULIP2/Cap3D/rendering_results_zys/objaverse_render_results_nolvis_72"
+dataset_root: "/path/to/data/objaverse"
 
 train_list: "./data/objaverse/train_list.txt"
 val_list: "./data/objaverse/val_list.txt"

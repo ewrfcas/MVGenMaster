@@ -37,6 +37,7 @@ pip install -r requirements.txt
 1. [Our model](https://huggingface.co/ewrfcas/MVGenMaster/resolve/main/check_points/pretrained_model.zip) for inference (put it to `./check_points/`).
 2. [Dust3R](https://huggingface.co/ewrfcas/MVGenMaster/resolve/main/check_points/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth) for inference with multi-view conditions (put it to `./check_points/`).
 3. [Depth-Pro](https://huggingface.co/ewrfcas/MVGenMaster/resolve/main/check_points/depth_pro.pt) for inference with single-view condition (put it to `./check_points/`).
+4. [data](https://huggingface.co/ewrfcas/MVGenMaster/resolve/main/data.zip) (optional) for training indices (put it to `./`).
 
 ## Inference
 ```

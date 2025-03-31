@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_pai_huakun/proj/blender_indoor/FRONT3D_render_2"
+dataset_root: "/path/to/data/front3d"
 
 train_list: "./data/front3d/train_list.txt"
 val_list: "./data/front3d/val_list.txt"

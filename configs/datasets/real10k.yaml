@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_jianchong/datasets/RealEstate10K/copy1/dataset" # used for A800
+dataset_root: "/path/to/data/real10k"
 
 train_list: "./data/real10k/train_list.txt"
 val_list: "./data/real10k/val_list.txt"

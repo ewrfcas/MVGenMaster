@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_jianchong/datasets/CO3Dv2/CO3Dv2_data"
+dataset_root: "/path/to/data/co3dv2"
 
 train_list: "./data/co3dv2/train_list.txt"
 val_list: "./data/co3dv2/val_list.txt"

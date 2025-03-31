@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_jianchong/datasets/ScanNet++/data_download/downloaded/data"
+dataset_root: "/path/to/data/scannet++"
 
 train_list: "./data/scannet++/train_list.txt"
 val_list: "./data/scannet++/val_list.txt"

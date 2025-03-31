@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_jianchong/datasets/mvi"
+dataset_root: "/path/to/data/mvimagenet"
 mask_path: "./data/mvimagenet/masks/"
 
 train_list: "./data/mvimagenet/train_list.txt"

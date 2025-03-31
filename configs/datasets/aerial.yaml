@@ -1,4 +1,4 @@
-dataset_root: "/mnt/3d_shuyao/data/real_city/aerial_frames"
+dataset_root: "/path/to/data/aerial"
 
 train_list: "./data/aerial/train_list.txt"
 val_list: "./data/aerial/val_list.txt"

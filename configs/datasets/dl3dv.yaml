@@ -1,4 +1,4 @@
-dataset_root: "/root/data/mnt_jianchong/datasets/DL3DV/DL3DV-ALL-1080P/data/scratch/gilbreth/sheng30/NeRF/Dataset/Dataset-Release/DL3DV-10K"
+dataset_root: "/path/to/data/dl3dv"
 
 train_list: "./data/dl3dv/train_list.txt"
 val_list: "./data/dl3dv/val_list.txt"

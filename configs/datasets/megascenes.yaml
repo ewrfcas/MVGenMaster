@@ -1,5 +1,5 @@
-dataset_root: "/root/data/mnt_jianchong/caochenjie.ccj/megascenes/data"
-image_root: "/root/data/mnt_jianchong/datasets/MegaScene/megascenes/images"
+dataset_root: "/path/to/data/megascenes/data"
+image_root: "/path/to/data/megascenes/images"
 
 train_list: "./data/megascenes/train_list.txt"
 val_list: "./data/megascenes/val_list.txt"
