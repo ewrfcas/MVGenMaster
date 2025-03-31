@@ -1,0 +1,14 @@
+dataset_root: "/root/data/mnt_jianchong/datasets/CO3Dv2/CO3Dv2_data"
+
+train_list: "./data/co3dv2/train_list.txt"
+val_list: "./data/co3dv2/val_list.txt"
+
+train_n_samples_per_subset: 150 # 51(categories)*150(sequences)≈7650 scenes/epoch
+val_n_samples_per_subset: 1 # CO3D: 1*53=53
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+sampling_interval: 1.0

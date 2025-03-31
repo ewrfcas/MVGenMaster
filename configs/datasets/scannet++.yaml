@@ -1,0 +1,15 @@
+dataset_root: "/root/data/mnt_jianchong/datasets/ScanNet++/data_download/downloaded/data"
+
+train_list: "./data/scannet++/train_list.txt"
+val_list: "./data/scannet++/val_list.txt"
+
+train_n_samples_per_subset: 6 # 340*6=2040
+val_n_samples_per_subset: 1
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+min_interval: 3 # 1,8 frame之间最小间隔
+max_interval: 12 # 6,32 frame之间最大间隔

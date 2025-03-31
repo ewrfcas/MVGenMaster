@@ -1,0 +1,18 @@
+dataset_root: "/root/data/mnt_jianchong/datasets/DL3DV/DL3DV-ALL-1080P/data/scratch/gilbreth/sheng30/NeRF/Dataset/Dataset-Release/DL3DV-10K"
+
+train_list: "./data/dl3dv/train_list.txt"
+val_list: "./data/dl3dv/val_list.txt"
+
+train_n_samples_per_subset: 8 # 每个场景最多的样本组数
+val_n_samples_per_subset: 1 # 测试集100个场景
+
+sort_frames: False
+
+# 主要比例为[540x960]
+image_height: 512
+image_width: 512
+
+# DL3DV每个scenes图片数量在300~450左右
+# 实际采样间隔为interval*nframe
+min_interval: 4 # 1,8 # frame之间最小间隔
+max_interval: 16 # 6,32 # frame之间最大间隔

@@ -1,0 +1,15 @@
+dataset_root: "/root/data/mnt_jianchong/caochenjie.ccj/megascenes/data"
+image_root: "/root/data/mnt_jianchong/datasets/MegaScene/megascenes/images"
+
+train_list: "./data/megascenes/train_list.txt"
+val_list: "./data/megascenes/val_list.txt"
+
+train_n_samples_per_subset: 30000 # 每个epoch大概30000个场景
+val_n_samples_per_subset: 0.2 # 测试集一共500个场景，500*0.2=100
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+sampling_interval: 1.0

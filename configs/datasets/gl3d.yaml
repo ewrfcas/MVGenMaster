@@ -1,0 +1,18 @@
+dataset_root: "/root/data/mnt_jianchong/caochenjie.ccj/aerial_data/GL3D/data"
+
+train_list: "./data/gl3d/train_list.txt"
+val_list: "./data/gl3d/val_list.txt"
+
+train_n_samples_per_subset: 4 # 每个场景最多的样本组数
+val_n_samples_per_subset: 1 # 测试集24个场景
+
+sort_frames: False
+
+# 主要比例为[540x960]
+image_height: 512
+image_width: 512
+
+# gl3d视角变化较大，且航拍共线区域较小
+# 实际采样间隔为interval*nframe
+min_interval: 1 # frame之间最小间隔
+max_interval: 3 # 3,4 frame之间最大间隔

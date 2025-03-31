@@ -1,0 +1,97 @@
+# pretrained_model_name_or_path: "./check_points/models--stabilityai--stable-diffusion-2-1-base/snapshots/5ede9e4bf3e3fd1cb0ef2f7a3fff13ee514fdf06"
+pretrained_model_name_or_path: "stabilityai/stable-diffusion-2-1"
+
+dataset_names: [ "dl3dv", "co3dv2", "mvimagenet", "real10k", "scannet++", "gl3d", "acid" ] # "objaverse" "front3d" "megascenes" "aerial" "streetview"
+
+dynamic_sampling: True
+
+nframe: 8
+image_size: 512
+
+train_batch_size: 64 # Batch size (per device) for the training dataloader，必须是n_frames_per_seq的倍数
+gradient_accumulation_steps: 1 # Number of updates steps to accumulate before performing a backward/update pass.
+gradient_checkpointing: True
+allow_tf32: False # Whether or not to allow TF32 on Ampere GPUs. Can be used to speed up training.
+dataloader_num_workers: 8
+max_train_steps: 600000 # Total number of training steps to perform.  If provided, overrides num_train_epochs.
+num_train_epochs: 1500
+checkpointing_steps: 2000 # Save a checkpoint of the training state every X updates.
+checkpoints_total_limit: 5 # -1
+validation_epochs: 10 # Run validation every X epochs.
+
+# The prediction_type that shall be used for training. Choose between 'epsilon' or 'v_prediction' or leave `None`.
+# If left to `None` the default prediction type of the scheduler: `noise_scheduler.config.prediciton_type` is chosen.
+prediction_type: null
+use_ema: False # Whether to use EMA model.
+enable_xformers_memory_efficient_attention: False # torch>=2.0已经支持了flashattention2
+noise_offset: 0.0 # The scale of noise offset.
+input_perturbation: 0.0 # The scale of input perturbation. Recommended 0.1.
+
+# scheduler params
+rescale_betas_zero_snr: True
+beta_schedule: "snr_rescale" # scaled_linear, linear, snr_rescale, snr_rescale2
+# 多数据集平均SNR^2: [3.76, 4.98, 6.41, 8.05]
+snr_rescale: 4 # snr_rescale(2) needs sqrt
+adaptive_betas: False # if this is true, beta_schedule must be scaled linear
+dyn_scheduler: False
+tag_dict: {
+  "co3dv2": [2.84011065, 3.48885126, 4.35105637, 5.25987238],
+  "mvimagenet": [3.48130056, 4.61248985, 5.81117017, 7.34165587],
+  "dl3dv": [5.48732045, 7.71244067, 10.5128295, 13.44243126],
+  "real10k": [4.96658347, 6.83804047, 8.88339281, 11.38805201],
+  "scannet++": [2.49597564, 3.07893548, 3.77435998, 4.59721609],
+  "objaverse": [4.80551779, 6.67680627, 8.88053301, 11.43800651],
+  "gl3d": [4.71029608, 6.35166526, 8.07183511, 10.18783744]
+}
+match_scheduler: False
+max_overlap: 0.75
+
+sort_train_rate: 0.5 # the rate to train models with sorted frames (the farthest frame would be more challenging)
+fix_cond_num: null
+# fix_cond_num: 3
+max_cond_num: 3
+multi_scale: True
+
+# camera params
+camera_longest_side: 5.0 # null, 5.0 
+normalize_extrinsic: True
+normalize_t: False # it should be false, if camera_longest_side is not None
+fourier_embedding: False
+fourier_embed_dim: 18
+
+model_cfg:
+  cfg_training_rate: 0.1
+  coords_cfg: 0.15 # 0.15
+  enable_depth: True
+  align_depth: True
+  priors3d: True
+  prior_type: "3dpe+pixel" # 3dpe (coord_dim=192), latent, warp_latent (coord_dim=4), 3dpe+pixel (coord_dim=192, add_in_ch=11), 3dpe+latent or 3dpe+warp_latent (coord_dim=192+4=196)
+  coord_dim: 192
+  depth_mid_times: 4 # 计算depth中位数，超出中位数*N倍的depth将会被contract截断
+  coord_encoder: "conv_in" # "conv_in" is used for conv inputs, "attn_in" is used before qk-dot in global attn, "cross_in" is used for cross-attention injection
+  coord_dropout: null # null
+  coord_downsample_type: "resize" # "conv", "resize"
+  use_rope: False
+  depth_freq: null # 32
+  additional_in_channels: 11 # (mask 1, camera 6, depth 1~x) # 7, [7, 54], 8
+  no_text_cross_attn: True # True
+  qk_norm: True
+  # domain switcher
+  domain_dict: {"others": 0, "megascenes": 1, "objaverse": 2}
+  class_embed_type: "zero_init"
+  num_class_embeds: 3
+
+opt_cfg:
+  learning_rate: 2.5e-5 # 5.0e-5 # Initial learning rate (after the potential warmup period) to use.
+  scale_lr: False # Scale the learning rate by the number of GPUs, gradient accumulation steps, and batch size.
+  # lr_scheduler: "constant_with_warmup" # ["linear", "cosine", "cosine_with_restarts", "polynomial", "constant", "constant_with_warmup"]
+  lr_scheduler: "constant_with_warmup"
+  lr_warmup_steps: 500 # Number of steps for the warmup in the lr scheduler.
+  snr_gamma: null # 'None' means constant 1. SNR weighting gamma to be used if rebalancing the loss. Recommended value is 5.0.
+  use_8bit_adam: False
+
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 0.01
+  adam_epsilon: 1.0e-8
+  max_grad_norm: 1.0

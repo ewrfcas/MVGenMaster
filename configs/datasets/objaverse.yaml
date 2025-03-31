@@ -1,0 +1,14 @@
+dataset_root: "/root/data/mnt_pai_huakun/mnt_det_bak/datasets/ULIP2/Cap3D/rendering_results_zys/objaverse_render_results_nolvis_72"
+
+train_list: "./data/objaverse/train_list.txt"
+val_list: "./data/objaverse/val_list.txt"
+
+train_n_samples_per_subset: 10000 
+val_n_samples_per_subset: 50
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+sampling_interval: 1.0

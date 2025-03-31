@@ -1,0 +1,15 @@
+dataset_root: "/root/data/mnt_jianchong/datasets/RealEstate10K/copy1/dataset" # used for A800
+
+train_list: "./data/real10k/train_list.txt"
+val_list: "./data/real10k/val_list.txt"
+
+train_n_samples_per_subset: 0.25 # 20k*0.25=5k
+val_n_samples_per_subset: 0.5
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+min_interval: 48 # 32,48 frame之间最小间隔
+max_interval: 144 # 128,144 frame之间最大间隔

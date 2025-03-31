@@ -1,0 +1,14 @@
+dataset_root: "/root/data/mnt_jianchong/datasets/StreetView_preprocessed"
+
+train_list: "./data/streetview/train_list.txt"
+val_list: "./data/streetview/val_list.txt"
+
+train_n_samples_per_subset: 8000 # total: 677503/50
+val_n_samples_per_subset: 1 # total: 50
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+sampling_interval: 1.0

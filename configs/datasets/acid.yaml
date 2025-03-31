@@ -1,0 +1,15 @@
+dataset_root: "/root/data/mnt_jianchong/caochenjie.ccj/aerial_data/ACID/acid/output"
+
+train_list: "./data/acid/train_list.txt"
+val_list: "./data/acid/val_list.txt"
+
+train_n_samples_per_subset: 0.5 # 2.6k*0.5=1.3k
+val_n_samples_per_subset: 1 # 测试集20个场景
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+min_interval: 64 # frame之间最小间隔
+max_interval: 144 # frame之间最大间隔

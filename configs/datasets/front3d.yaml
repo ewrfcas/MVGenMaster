@@ -1,0 +1,14 @@
+dataset_root: "/root/data/mnt_pai_huakun/proj/blender_indoor/FRONT3D_render_2"
+
+train_list: "./data/front3d/train_list.txt"
+val_list: "./data/front3d/val_list.txt"
+
+train_n_samples_per_subset: 3400 # 一共10667
+val_n_samples_per_subset: 1 # 50
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+sampling_interval: 1.0

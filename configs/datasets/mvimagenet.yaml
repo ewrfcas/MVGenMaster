@@ -1,0 +1,15 @@
+dataset_root: "/root/data/mnt_jianchong/datasets/mvi"
+mask_path: "./data/mvimagenet/masks/"
+
+train_list: "./data/mvimagenet/train_list.txt"
+val_list: "./data/mvimagenet/val_list.txt"
+
+train_n_samples_per_subset: 70 # mvimgnet 70*238≈16660
+val_n_samples_per_subset: 1 # mvimagenet: 1*238=238
+
+sort_frames: False
+
+image_height: 512
+image_width: 512
+
+sampling_interval: 1.0
