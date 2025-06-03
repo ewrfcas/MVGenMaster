@@ -13,11 +13,14 @@ Moreover, we present several training and model modifications to strengthen the 
 Extensive evaluations across in- and out-of-domain benchmarks demonstrate the effectiveness of our proposed method and data formulation.
 Models and codes will be released soon.
 
+## News
+- **2025-06-03**: We release partial aligned depth of MvD-1M.
+
 ### TODO List
 - [x] Environment setup
 - [x] Training codes
 - [x] Inference models and codes
-- [ ] Releasing partial MvD-1M
+- [x] Releasing partial MvD-1M
 
 ## Preparation
 
@@ -38,6 +41,22 @@ pip install -r requirements.txt
 2. [Dust3R](https://huggingface.co/ewrfcas/MVGenMaster/resolve/main/check_points/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth) for inference with multi-view conditions (put it to `./check_points/`).
 3. [Depth-Pro](https://huggingface.co/ewrfcas/MVGenMaster/resolve/main/check_points/depth_pro.pt) for inference with single-view condition (put it to `./check_points/`).
 4. [data](https://huggingface.co/ewrfcas/MVGenMaster/resolve/main/data.zip) (optional) for training indices (put it to `./`).
+
+### MvD-1M aligned depth
+
+We release some aligned coefficients of MvD-1M in [Link](https://huggingface.co/datasets/ewrfcas/MVGenMaster/tree/main) (ACID, DL3DV, Co3Dv2, Real10k, MVImgNet).
+
+For each `json`, `scale` and `shift` is saved as:
+```
+{'scale': 1.3232, 'shift': 0.0124}
+```
+Some cases are failed with `scale==0.0` and `shift==0.0`.
+You should load this the inverse depth (disp) inferenced by [DepthAnythingV2](https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth) (depth_anything_v2_vitl) and then apply the following codes to achieve aligned metric depth.
+Note that all coefficients are aligned based on the officially given extrinsic cameras.
+```
+disp = np.clip(disp * scale + shift, 1e-4, 1e4)
+depth = np.clip(1 / disp, 0, 1e4)
+```
 
 ## Inference
 ```
