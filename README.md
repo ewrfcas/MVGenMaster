@@ -44,7 +44,7 @@ pip install -r requirements.txt
 
 ### MvD-1M aligned depth
 
-We release some aligned coefficients of MvD-1M in [Link](https://huggingface.co/datasets/ewrfcas/MVGenMaster/tree/main) (ACID, DL3DV, Co3Dv2, Real10k, MVImgNet).
+We release some aligned coefficients of MvD-1M in [Link](https://huggingface.co/datasets/ewrfcas/MVGenMaster/tree/main/monocular_depthanythingv2_scaleshift) (ACID, DL3DV, Co3Dv2, Real10k, MVImgNet).
 
 For each `json`, `scale` and `shift` is saved as:
 ```
@@ -54,6 +54,7 @@ Some cases are failed with `scale==0.0` and `shift==0.0`.
 You should load this the inverse depth (disp) inferenced by [DepthAnythingV2](https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth) (depth_anything_v2_vitl) and then apply the following codes to achieve aligned metric depth.
 Note that all coefficients are aligned based on the officially given extrinsic cameras.
 ```
+disp = model_depthanythingV2_large.forward(image)
 disp = np.clip(disp * scale + shift, 1e-4, 1e4)
 depth = np.clip(1 / disp, 0, 1e4)
 ```
