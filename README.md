@@ -15,6 +15,7 @@ Models and codes will be released soon.
 
 ## News
 - **2025-06-03**: We release partial aligned depth of MvD-1M.
+- **2025-05-30**: Our new work, [Uni3C](https://ewrfcas.github.io/Uni3C/), is also released.
 
 ### TODO List
 - [x] Environment setup
@@ -51,7 +52,7 @@ For each `json`, `scale` and `shift` is saved as:
 {'scale': 1.3232, 'shift': 0.0124}
 ```
 Some cases are failed with `scale==0.0` and `shift==0.0`.
-You should load this the inverse depth (disp) inferenced by [DepthAnythingV2](https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth) (depth_anything_v2_vitl) and then apply the following codes to achieve aligned metric depth.
+You should load the inverse depth (disp) inferenced by [DepthAnythingV2](https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth) (depth_anything_v2_vitl) and then apply the following codes to achieve aligned metric depth.
 Note that all coefficients are aligned based on the officially given extrinsic cameras.
 ```
 disp = model_depthanythingV2_large.forward(image)
