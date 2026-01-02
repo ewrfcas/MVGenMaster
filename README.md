@@ -115,10 +115,11 @@ NOTE: We additionally use "objaverse" "front3d" "megascenes" "aerial" "streetvie
 If you found our project helpful, please consider citing:
 
 ```
-@article{cao2024mvgenmaster,
+@inproceedings{cao2025mvgenmaster,
   title={MVGenMaster: Scaling Multi-View Generation from Any Image via 3D Priors Enhanced Diffusion Model},
   author={Cao, Chenjie and Yu, Chaohui and Liu, Shang and Wang, Fan and Xue, Xiangyang and Fu, Yanwei},
-  journal={arXiv preprint arXiv:2411.16157},
-  year={2024}
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={6045--6056},
+  year={2025}
 }
 ```
